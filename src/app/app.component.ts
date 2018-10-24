@@ -18,6 +18,9 @@ export class AppComponent {
   getItems():void{                                          
     this._Pservice.getproducts().subscribe(data=>{this.Ibikedata=data,
     console.log(this.Ibikedata[0].productid)});                              // THE , ENSURES THERE IS DATA IN THE DATA STREAM OBJ OF TYPE IPRODUCTS
-      
+                                                                             
+  }
+  teaser():void{
+    console.log("Now it worked "+this.Ibikedata[0].productid)               // THE DATA ISNT STORED UNTIL THERE IS AN EVENT RAISED OR A CHANGE
   }
 }
