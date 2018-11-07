@@ -1,3 +1,24 @@
-<p>
-  sign-up works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h4>Register new user</h4>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <input [(ngModel)]="email" matInput placeholder="email" name="email" type="email" >
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input [(ngModel)]="pass" matInput placeholder="Password" name="pass" type="password" >
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input [(ngModel)]="name" matInput placeholder="Name" name="name" >
+      </mat-form-field>
+      <br>
+      <button (click)="register()" mat-raised-button color="primary" >Register</button>
+    </form>
+  </mat-card-content>
+</mat-card>

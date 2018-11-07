@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
- import { NotificationService } from './notification.service';
+ import { NotificationService } from '../notification.service';
 import * as firebase from 'firebase/';
 
 @Injectable({
@@ -29,15 +29,18 @@ export class AuthService {
         this.sendEmailVerification();
         const message = 'A verification email has been sent, please check your email and follow the steps!';
         this.notifier.display(true, message);
-        return firebase.database().ref('users/' + res.user.uid).set({
+        console.log()
+        return firebase.database().ref('Employees/' + name).set({
           email: res.user.email,
           uid: res.user.uid,
           registrationDate: new Date().toString(),
           name: name
+          // The .ref automatically puts u in the realtime database section you created
+          // You as the coder instantiates a new table column and .set the table row data
         })
           .then(() => {
             firebase.auth().signOut();
-            this.router.navigate(['login']);
+           // this.router.navigate(['login']);
           });
       })
       .catch(err => {
@@ -55,14 +58,14 @@ export class AuthService {
     });
   }
 
-  doRegister(value){
+  /* doRegister(value){
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then(res => {
         resolve(res);
       }, err => reject(err))
     })
-  }
+  } */
 
   doLogin(value){
     return new Promise<any>((resolve, reject) => {
